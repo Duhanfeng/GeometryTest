@@ -26,7 +26,7 @@ namespace rv
     template<typename _Tp2>
     inline constexpr Ray<_Tp>::Ray(const Ray<_Tp2>& ray) noexcept
     {
-        center = _Tp(ray.center);
+        center = Point<_Tp>(ray.center);
         angle = ray.angle;
     }
 
@@ -34,7 +34,7 @@ namespace rv
     template<typename _Tp2>
     inline constexpr Ray<_Tp>& Ray<_Tp>::operator=(const Ray<_Tp2>& ray) noexcept
     {
-        center = _Tp(ray.center);
+        center = Point<_Tp>(ray.center);
         angle = ray.angle;
         return *this;
     }

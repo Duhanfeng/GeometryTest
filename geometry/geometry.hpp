@@ -6,6 +6,7 @@
 #include "geometries/rectangle.hpp"
 #include "geometries/rotatedRect.hpp"
 #include "geometries/circle.hpp"
+#include "geometries/arc.hpp"
 #include "geometries/ray.hpp"
 #include "geometries/pose.hpp"
 
@@ -34,7 +35,7 @@ enum class GeometryType
     Rectangle,
     RotatedRect,
     Circle,
-    CircularArc,
+    Arc,
     Annulus,
     Annulus2,
     Polygon,

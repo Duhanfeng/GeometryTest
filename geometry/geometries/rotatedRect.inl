@@ -36,8 +36,8 @@ namespace rv
     template<typename _Tp2>
     inline constexpr RotatedRect<_Tp>::RotatedRect(const RotatedRect<_Tp2>& rect) noexcept
     {
-        center = _Tp(rect.center);
-        size = _Tp(rect.size);
+        center = Point<_Tp>(rect.center);
+        size = Size<_Tp>(rect.size);
         angle = rect.angle;
     }
 
@@ -45,8 +45,8 @@ namespace rv
     template<typename _Tp2>
     inline constexpr RotatedRect<_Tp>& RotatedRect<_Tp>::operator=(const RotatedRect<_Tp2>& rect) noexcept
     {
-        center = _Tp(rect.center);
-        size = _Tp(rect.size);
+        center = Point<_Tp>(rect.center);
+        size = Size<_Tp>(rect.size);
         angle = rect.angle;
         return *this;
     }

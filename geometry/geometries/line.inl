@@ -21,16 +21,16 @@ namespace rv
     template<typename _Tp2>
     inline constexpr Line<_Tp>::Line(const Line<_Tp2>& line) noexcept
     {
-        p1 = _Tp(line.p1);
-        p2 = _Tp(line.p2);
+        p1 = Point<_Tp>(line.p1);
+        p2 = Point<_Tp>(line.p2);
     }
 
     template<typename _Tp>
     template<typename _Tp2>
     inline constexpr Line<_Tp>& Line<_Tp>::operator=(const Line<_Tp2>& line) noexcept
     {
-        p1 = _Tp(line.p1);
-        p2 = _Tp(line.p2);
+        p1 = Point<_Tp>(line.p1);
+        p2 = Point<_Tp>(line.p2);
         return *this;
     }
 

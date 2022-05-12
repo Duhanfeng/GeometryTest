@@ -63,6 +63,10 @@ int main()
     //射线
     rv::Ray<double> ray;
 
+    //圆弧
+    rv::Arc<double> arc(10.1, 102.3, 1, 2, 3);
+    rv::Arc<int> arc2(arc);
+
 
 
  //   wykobi::line<double, 2> _line[4];

@@ -26,7 +26,7 @@ namespace rv
     template<typename _Tp2>
     inline constexpr Pose<_Tp>::Pose(const Pose<_Tp2>& pose) noexcept
     {
-        center = _Tp(pose.center);
+        center = Point<_Tp>(pose.center);
         angle = pose.angle;
     }
 
@@ -34,7 +34,7 @@ namespace rv
     template<typename _Tp2>
     inline constexpr Pose<_Tp>& Pose<_Tp>::operator=(const Pose<_Tp2>& pose) noexcept
     {
-        center = _Tp(pose.center);
+        center = Point<_Tp>(pose.center);
         angle = pose.angle;
         return *this;
     }

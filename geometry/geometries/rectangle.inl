@@ -21,16 +21,16 @@ namespace rv
     template<typename _Tp2>
     inline constexpr Rectangle<_Tp>::Rectangle(const Rectangle<_Tp2>& rect) noexcept
     {
-        center = _Tp(rect.center);
-        size = _Tp(rect.size);
+        center = Point<_Tp>(rect.center);
+        size = Size<_Tp>(rect.size);
     }
 
     template<typename _Tp>
     template<typename _Tp2>
     inline constexpr Rectangle<_Tp>& Rectangle<_Tp>::operator=(const Rectangle<_Tp2>& rect) noexcept
     {
-        center = _Tp(rect.center);
-        size = _Tp(rect.size);
+        center = Point<_Tp>(rect.center);
+        size = Size<_Tp>(rect.size);
         return *this;
     }
 
