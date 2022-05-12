@@ -90,4 +90,21 @@ namespace rv
         return *this;
     }
 
+    template<typename _Tp>
+    constexpr bool operator==(const Arc<_Tp>& arc1, const Arc<_Tp>& arc2) noexcept
+    {
+        return (arc1.center == arc2.center) &&
+            fuzzyCompare(arc1.radius, arc2.radius)&&
+            fuzzyCompare(arc1.angleStart, arc2.angleStart)&&
+            fuzzyCompare(arc1.angleSpan(), arc2.angleSpan());
+    }
+
+    template<typename _Tp>
+    constexpr bool operator!=(const Arc<_Tp>& arc1, const Arc<_Tp>& arc2) noexcept
+    {
+        return (arc1.center != arc2.center) ||
+            !fuzzyCompare(arc1.radius, arc2.radius) ||
+            !fuzzyCompare(arc1.angleStart, arc2.angleStart) ||
+            !fuzzyCompare(arc1.angleSpan(), arc2.angleSpan());
+    }
 }

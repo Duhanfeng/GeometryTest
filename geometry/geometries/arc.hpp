@@ -30,6 +30,10 @@ namespace rv
 
     };
 
+    //符号重载
+    template<typename _Tp> inline constexpr bool operator==(const Arc<_Tp>&, const Arc<_Tp>&) noexcept;
+    template<typename _Tp> inline constexpr bool operator!=(const Arc<_Tp>&, const Arc<_Tp>&) noexcept;
+
 }
 
 #include "arc.inl"

@@ -14,17 +14,17 @@
 0.尺寸,Size
 1.点,Point
 2.直线,Line
-3.矩形,Rectangle(位置+尺寸)
+3.矩形,Rectangle
 4.旋转矩形,RotatedRect
 5.圆,Circle
 6.圆弧,CircularArc
 7.圆环,Annulus
-8.圆弧环,Annulus2
-9.多边形,Polygon
-10.射线,Ray
-11.位置,Pose
-12.点集(离散),PointSet
-13.线集
+8.多边形,Polygon
+9.射线,Ray
+10.位置,Pose
+11.点集(离散),PointSet
+11.轮廓,Contour
+12.线集
 */
 
 enum class GeometryType
