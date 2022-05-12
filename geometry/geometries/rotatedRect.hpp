@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "point.hpp"
 #include "size.hpp"
@@ -11,20 +11,20 @@ namespace rv
     {
     public:
 
-        //¹¹Ôì
+        //æ„é€ 
         constexpr RotatedRect() noexcept;
         constexpr RotatedRect(_Tp x, _Tp y, _Tp w, _Tp h, double angle) noexcept;
         constexpr RotatedRect(const Point<_Tp>& center, const Size<_Tp>& size, double angle) noexcept;
         constexpr RotatedRect(const Rectangle<_Tp>& rect, double angle) noexcept;
         template<typename _Tp2> constexpr RotatedRect(const RotatedRect<_Tp2>& line) noexcept;
 
-        //¹¦ÄÜº¯Êı
+        //åŠŸèƒ½å‡½æ•°
         inline constexpr bool isNull() const noexcept;
         inline constexpr _Tp area() const noexcept;
         inline constexpr RotatedRect move(_Tp dx, _Tp dy) const noexcept;
         inline constexpr RotatedRect rotate(const Point<_Tp>& center, double radian) const noexcept;
 
-        inline constexpr std::vector<Point<_Tp>> getPoints() const noexcept;    //Ë³ĞòÎª:×óÉÏ,ÓÒÉÏ,ÓÒÏÂ,×óÏÂ
+        inline constexpr std::vector<Point<_Tp>> getPoints() const noexcept;    //é¡ºåºä¸º:å·¦ä¸Š,å³ä¸Š,å³ä¸‹,å·¦ä¸‹
         inline constexpr Point<_Tp> topLeft() const noexcept;
         inline constexpr Point<_Tp> topRight() const noexcept;
         inline constexpr Point<_Tp> bottomRight() const noexcept;
@@ -38,18 +38,18 @@ namespace rv
         inline constexpr _Tp right() const noexcept;
         inline constexpr _Tp bottom() const noexcept;
 
-        //·ûºÅÖØÔØ
+        //ç¬¦å·é‡è½½
         inline constexpr RotatedRect& operator*=(double c) noexcept;
         inline constexpr RotatedRect& operator/=(double c);
-        template<typename _Tp2> inline constexpr RotatedRect& operator= (const RotatedRect<_Tp2>&) noexcept;  //ÀàĞÍ×ª»»
+        template<typename _Tp2> inline constexpr RotatedRect& operator= (const RotatedRect<_Tp2>&) noexcept;  //ç±»å‹è½¬æ¢
 
-        //ºËĞÄÊı¾İ
+        //æ ¸å¿ƒæ•°æ®
         Point<_Tp> center;
         Size<_Tp> size;
-        double angle;       //½Ç¶È,»¡¶ÈÖÆ
+        double angle;       //è§’åº¦,å¼§åº¦åˆ¶
     };
 
-    //·ûºÅÖØÔØ
+    //ç¬¦å·é‡è½½
     template<typename _Tp> inline constexpr bool operator==(const RotatedRect<_Tp>&, const RotatedRect<_Tp>&) noexcept;
     template<typename _Tp> inline constexpr bool operator!=(const RotatedRect<_Tp>&, const RotatedRect<_Tp>&) noexcept;
     template<typename _Tp> inline constexpr const RotatedRect<_Tp> operator*(const RotatedRect<_Tp>&, double) noexcept;

@@ -4,6 +4,12 @@
 
 namespace rv
 {
+#ifdef CV_PI
+#define RV_PI CV_PI
+#else
+#define RV_PI (3.1415926535897932384626433832795)
+#endif
+
     template<typename _Tp>
     constexpr inline bool fuzzyCompare(_Tp p1, _Tp p2)
     {

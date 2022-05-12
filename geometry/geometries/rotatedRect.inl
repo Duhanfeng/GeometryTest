@@ -1,4 +1,4 @@
-#include "rotatedRect.hpp"
+﻿#include "rotatedRect.hpp"
 #include "rmath.h"
 
 namespace rv
