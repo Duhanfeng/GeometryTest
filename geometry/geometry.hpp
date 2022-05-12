@@ -7,6 +7,7 @@
 #include "geometries/rotatedRect.hpp"
 #include "geometries/circle.hpp"
 #include "geometries/ray.hpp"
+#include "geometries/pose.hpp"
 
 /*
 0.尺寸,Size
@@ -19,8 +20,8 @@
 7.圆环,Annulus
 8.圆弧环,Annulus2
 9.多边形,Polygon
-10.射线,Ray,(基准点+方向)
-11.位置,Pose()
+10.射线,Ray
+11.位置,Pose
 12.点集(离散),PointSet
 13.线集
 */

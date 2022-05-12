@@ -1,5 +1,4 @@
 ﻿#include "ray.hpp"
-#include "ray.hpp"
 #include "rmath.h"
 
 namespace rv

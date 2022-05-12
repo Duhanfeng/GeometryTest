@@ -1,5 +1,4 @@
 ﻿#include "circle.hpp"
-#include "circle.hpp"
 #include "rmath.h"
 
 namespace rv
