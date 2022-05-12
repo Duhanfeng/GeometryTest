@@ -9,6 +9,7 @@
 #include "rmath.h"
 #include "wykobi/wykobi.hpp"
 #include "geometry/geometry.hpp"
+#include <array>
 
 using namespace std;
 //using namespace boost::geometry;
@@ -76,6 +77,10 @@ int main()
     polygon.push_back(rv::Point<double>(10, 20));
     polygon.push_back(rv::Point<double>(10, 20));
 
+    rv::Polygon<double> polygon2 = polygon.move(1, 2);
+    
+    std::array<double, 4> p41 = {0, 0, 0, 0};
+    p41[0] = 3;
 
 
  //   wykobi::line<double, 2> _line[4];

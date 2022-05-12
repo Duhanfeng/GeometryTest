@@ -16,12 +16,12 @@ namespace rv
         return p1 == p2;
     }
 
-    inline bool fuzzyCompare(double p1, double p2) noexcept
+    template<> inline bool fuzzyCompare(double p1, double p2) noexcept
     {
         return std::abs(p1 - p2) <= 1.0E-07;
     }
 
-    inline bool fuzzyCompare(float p1, float p2) noexcept
+    template<> inline bool fuzzyCompare(float p1, float p2) noexcept
     {
         return std::abs(p1 - p2) <= 1.0E-05f;
     }

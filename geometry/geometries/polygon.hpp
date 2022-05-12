@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <vector>
+#include <initializer_list>
 #include "point.hpp"
 
 namespace rv
@@ -22,9 +23,28 @@ namespace rv
         template <typename Iterator> constexpr Polygon(Iterator begin, Iterator end) noexcept : base_type(begin, end) {}
         constexpr Polygon(std::initializer_list<Point<_Tp>> l) noexcept : base_type(l.begin(), l.end()) {}
 
-
+        //功能函数
+        inline constexpr Polygon move(_Tp dx, _Tp dy) const noexcept;
+        //inline constexpr Polygon rotate(const Point<_Tp>& center, double radian) const noexcept;
 
     };
+
+    template<typename _Tp,template<typename, typename> class Container,template<typename> class Allocator>
+    inline constexpr Polygon<_Tp, Container, Allocator> Polygon<_Tp, Container, Allocator>::move(_Tp dx, _Tp dy) const noexcept
+    {
+        Polygon<_Tp, Container, Allocator> polygon;
+
+        std::initializer_list<Point<_Tp>> a;
+
+        //for (auto itr = this->template cbegin(); itr != this->template cend(); itr++)
+        //{
+        //    
+
+        //}
+
+        return polygon;
+    }
+
 
 }
 
