@@ -112,11 +112,13 @@ namespace rv
     {
         return Arc<_Tp>(arc.center * c, arc.radius * c, arc.angleStart, arc.angleEnd);
     }
+
     template<typename _Tp>
     constexpr const Arc<_Tp> operator*(double c, const Arc<_Tp>& arc) noexcept
     {
         return Arc<_Tp>(arc.center * c, arc.radius * c, arc.angleStart, arc.angleEnd);;
     }
+
     template<typename _Tp>
     constexpr const Arc<_Tp> operator/(const Arc<_Tp>& arc, double c)
     {

@@ -10,6 +10,7 @@
 #include "geometries/annulus.hpp"
 #include "geometries/ray.hpp"
 #include "geometries/pose.hpp"
+#include "geometries/polygon.hpp"
 
 /*
 0.尺寸,Size

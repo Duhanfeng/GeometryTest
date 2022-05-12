@@ -70,6 +70,12 @@ int main()
     //圆环
     rv::Annulus<double> annulus;
 
+    //多边形
+    rv::Polygon<double> polygon;
+    polygon.push_back(p1);
+    polygon.push_back(rv::Point<double>(10, 20));
+    polygon.push_back(rv::Point<double>(10, 20));
+
 
 
  //   wykobi::line<double, 2> _line[4];
@@ -81,8 +87,8 @@ int main()
  //       
  //   }
 
- //   typedef boost::polygon::rectangle_data<int> rect;
- //   rect b = boost::polygon::construct<rect>(1, 2, 3, 4);
+    //typedef boost::polygon::rectangle_data<int> rect;
+    //rect b = boost::polygon::construct<rect>(1, 2, 3, 4);
 
  //   std::cout << "Area (using Boost.Geometry): "
  //       << boost::geometry::area(b) << std::endl;
