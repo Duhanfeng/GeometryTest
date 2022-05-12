@@ -57,6 +57,13 @@ int main()
     std::vector<rv::Point<double>> points = rect.getPoints();
     std::cout << points.at(0).x << "," << points[0].y << std::endl;
 
+    //圆
+    rv::Circle<double> circle;
+
+    //射线
+    rv::Ray<double> ray;
+
+
 
  //   wykobi::line<double, 2> _line[4];
  //   _line[0] = wykobi::make_line<double>(1.0, 1.0, 2, 2);

@@ -6,6 +6,7 @@
 #include "geometries/rectangle.hpp"
 #include "geometries/rotatedRect.hpp"
 #include "geometries/circle.hpp"
+#include "geometries/ray.hpp"
 
 /*
 0.尺寸,Size

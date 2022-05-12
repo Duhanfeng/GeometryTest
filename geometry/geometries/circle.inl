@@ -25,18 +25,18 @@ namespace rv
 
     template<typename _Tp>
     template<typename _Tp2>
-    inline constexpr Circle<_Tp>::Circle(const Circle<_Tp2>& rect) noexcept
+    inline constexpr Circle<_Tp>::Circle(const Circle<_Tp2>& circle) noexcept
     {
-        center = _Tp(rect.center);
-        radius = _Tp(rect.radius);
+        center = _Tp(circle.center);
+        radius = _Tp(circle.radius);
     }
 
     template<typename _Tp>
     template<typename _Tp2>
-    inline constexpr Circle<_Tp>& Circle<_Tp>::operator=(const Circle<_Tp2>& rect) noexcept
+    inline constexpr Circle<_Tp>& Circle<_Tp>::operator=(const Circle<_Tp2>& circle) noexcept
     {
-        center = _Tp(rect.center);
-        radius = _Tp(rect.radius);
+        center = _Tp(circle.center);
+        radius = _Tp(circle.radius);
         return *this;
     }
 
@@ -87,33 +87,33 @@ namespace rv
     }
 
     template<typename _Tp>
-    inline constexpr bool operator==(const Circle<_Tp>& rect1, const Circle<_Tp>& rect2) noexcept
+    inline constexpr bool operator==(const Circle<_Tp>& circle1, const Circle<_Tp>& circle2) noexcept
     {
-        return (rect1.center == rect2.center) && fuzzyCompare(rect1.radius, rect2.radius);
+        return (circle1.center == circle2.center) && fuzzyCompare(circle1.radius, circle2.radius);
     }
 
     template<typename _Tp>
-    inline constexpr bool operator!=(const Circle<_Tp>& rect1, const Circle<_Tp>& rect2) noexcept
+    inline constexpr bool operator!=(const Circle<_Tp>& circle1, const Circle<_Tp>& circle2) noexcept
     {
-        return (rect1.center != rect2.center) || !fuzzyCompare(rect1.radius, rect2.radius);
+        return (circle1.center != circle2.center) || !fuzzyCompare(circle1.radius, circle2.radius);
     }
 
     template<typename _Tp>
-    inline constexpr const Circle<_Tp> operator*(const Circle<_Tp>& rect, double c) noexcept
+    inline constexpr const Circle<_Tp> operator*(const Circle<_Tp>& circle, double c) noexcept
     {
-        return Circle<_Tp>(rect.center * c, rect.radius * c);
+        return Circle<_Tp>(circle.center * c, circle.radius * c);
     }
 
     template<typename _Tp>
-    inline constexpr const Circle<_Tp> operator*(double c, const Circle<_Tp>& rect) noexcept
+    inline constexpr const Circle<_Tp> operator*(double c, const Circle<_Tp>& circle) noexcept
     {
-        return Circle<_Tp>(rect.center * c, rect.radius * c);
+        return Circle<_Tp>(circle.center * c, circle.radius * c);
     }
 
     template<typename _Tp>
-    inline constexpr const Circle<_Tp> operator/(const Circle<_Tp>& rect, double c)
+    inline constexpr const Circle<_Tp> operator/(const Circle<_Tp>& circle, double c)
     {
-        return Circle<_Tp>(rect.center / c, rect.radius / c);
+        return Circle<_Tp>(circle.center / c, circle.radius / c);
     }
 
     template<typename _Tp>

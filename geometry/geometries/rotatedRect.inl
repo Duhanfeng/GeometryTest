@@ -38,7 +38,7 @@ namespace rv
     {
         center = _Tp(rect.center);
         size = _Tp(rect.size);
-        angle = _Tp(rect.angle);
+        angle = rect.angle;
     }
 
     template<typename _Tp>
