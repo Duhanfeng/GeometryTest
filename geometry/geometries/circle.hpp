@@ -13,7 +13,7 @@ namespace rv
         constexpr Circle() noexcept;
         constexpr Circle(_Tp x, _Tp y, _Tp radius) noexcept;
         constexpr Circle(const Point<_Tp>& center, _Tp radius) noexcept;
-        template<typename _Tp2> constexpr Circle(const Circle<_Tp2>& line) noexcept;
+        template<typename _Tp2> constexpr Circle(const Circle<_Tp2>& circle) noexcept;
 
         //功能函数
         inline constexpr bool isNull() const noexcept;

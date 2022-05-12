@@ -16,7 +16,7 @@ namespace rv
         constexpr RotatedRect(_Tp x, _Tp y, _Tp w, _Tp h, double angle) noexcept;
         constexpr RotatedRect(const Point<_Tp>& center, const Size<_Tp>& size, double angle) noexcept;
         constexpr RotatedRect(const Rectangle<_Tp>& rect, double angle) noexcept;
-        template<typename _Tp2> constexpr RotatedRect(const RotatedRect<_Tp2>& line) noexcept;
+        template<typename _Tp2> constexpr RotatedRect(const RotatedRect<_Tp2>& rect) noexcept;
 
         //功能函数
         inline constexpr bool isNull() const noexcept;

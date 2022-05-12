@@ -14,7 +14,7 @@ namespace rv
         constexpr Rectangle() noexcept;
         constexpr Rectangle(_Tp x, _Tp y, _Tp w, _Tp h) noexcept;
         constexpr Rectangle(const Point<_Tp>& center, const Size<_Tp>& size) noexcept;
-        template<typename _Tp2> constexpr Rectangle(const Rectangle<_Tp2>& line) noexcept;
+        template<typename _Tp2> constexpr Rectangle(const Rectangle<_Tp2>& rect) noexcept;
 
         //功能函数
         inline constexpr bool isNull() const noexcept;
