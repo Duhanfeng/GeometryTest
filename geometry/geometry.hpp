@@ -7,6 +7,7 @@
 #include "geometries/rotatedRect.hpp"
 #include "geometries/circle.hpp"
 #include "geometries/arc.hpp"
+#include "geometries/annulus.hpp"
 #include "geometries/ray.hpp"
 #include "geometries/pose.hpp"
 
@@ -17,7 +18,7 @@
 3.矩形,Rectangle
 4.旋转矩形,RotatedRect
 5.圆,Circle
-6.圆弧,CircularArc
+6.圆弧,Arc
 7.圆环,Annulus
 8.多边形,Polygon
 9.射线,Ray
@@ -37,10 +38,10 @@ enum class GeometryType
     Circle,
     Arc,
     Annulus,
-    Annulus2,
     Polygon,
     Ray,
     Pose,
     PointSet,
+    Contour,
     Lines,
 };

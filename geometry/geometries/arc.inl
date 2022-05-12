@@ -107,4 +107,19 @@ namespace rv
             !fuzzyCompare(arc1.angleStart, arc2.angleStart) ||
             !fuzzyCompare(arc1.angleSpan(), arc2.angleSpan());
     }
+    template<typename _Tp>
+    constexpr const Arc<_Tp> operator*(const Arc<_Tp>& arc, double c) noexcept
+    {
+        return Arc<_Tp>(arc.center * c, arc.radius * c, arc.angleStart, arc.angleEnd);
+    }
+    template<typename _Tp>
+    constexpr const Arc<_Tp> operator*(double c, const Arc<_Tp>& arc) noexcept
+    {
+        return Arc<_Tp>(arc.center * c, arc.radius * c, arc.angleStart, arc.angleEnd);;
+    }
+    template<typename _Tp>
+    constexpr const Arc<_Tp> operator/(const Arc<_Tp>& arc, double c)
+    {
+        return Arc<_Tp>(arc.center / c, arc.radius / c, arc.angleStart, arc.angleEnd);
+    }
 }

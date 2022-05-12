@@ -14,6 +14,23 @@ namespace rv
     }
 
     template<typename _Tp>
+    template<typename _Tp2>
+    inline constexpr Point<_Tp>::Point(const Point<_Tp2>& point) noexcept
+    {
+        x = _Tp(point.x);
+        y = _Tp(point.y);
+    }
+
+    template<typename _Tp>
+    template<typename _Tp2>
+    inline constexpr Point<_Tp>& Point<_Tp>::operator=(const Point<_Tp2>& point) noexcept
+    {
+        x = _Tp(point.x);
+        y = _Tp(point.y);
+        return *this;
+    }
+
+    template<typename _Tp>
     inline constexpr bool rv::Point<_Tp>::isNull() const noexcept
     {
         return isNull(x) && isNull(y);
@@ -74,23 +91,6 @@ namespace rv
     {
         x /= c;
         y /= c;
-        return *this;
-    }
-
-    template<typename _Tp>
-    template<typename _Tp2>
-    inline constexpr Point<_Tp>::Point(const Point<_Tp2>& point) noexcept
-    {
-        x = _Tp(point.x);
-        y = _Tp(point.y);
-    }
-
-    template<typename _Tp>
-    template<typename _Tp2>
-    inline constexpr Point<_Tp>& Point<_Tp>::operator=(const Point<_Tp2>& point) noexcept
-    {
-        x = _Tp(point.x);
-        y = _Tp(point.y);
         return *this;
     }
 

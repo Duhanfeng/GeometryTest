@@ -67,6 +67,9 @@ int main()
     rv::Arc<double> arc(10.1, 102.3, 1, 2, 3);
     rv::Arc<int> arc2(arc);
 
+    //圆环
+    rv::Annulus<double> annulus;
+
 
 
  //   wykobi::line<double, 2> _line[4];

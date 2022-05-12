@@ -26,7 +26,7 @@ namespace rv
     template<typename _Tp2>
     inline constexpr Circle<_Tp>::Circle(const Circle<_Tp2>& circle) noexcept
     {
-        center = _Tp(circle.center);
+        center = Point<_Tp>(circle.center);
         radius = _Tp(circle.radius);
     }
 
@@ -34,7 +34,7 @@ namespace rv
     template<typename _Tp2>
     inline constexpr Circle<_Tp>& Circle<_Tp>::operator=(const Circle<_Tp2>& circle) noexcept
     {
-        center = _Tp(circle.center);
+        center = Point<_Tp>(circle.center);
         radius = _Tp(circle.radius);
         return *this;
     }
