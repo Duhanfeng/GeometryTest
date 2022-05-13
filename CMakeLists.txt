@@ -9,6 +9,17 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
+# 添加opencv支持
+if (WIN32)
+    set(OpenCV_DIR "C:/Program Files/CppLibrary/opencv/build")
+    if((MSVC_VERSION EQUAL 1910) OR (MSVC_VERSION GREATER 1910))
+        set(OpenCV_RUNTIME vc15)
+    else()
+        set(OpenCV_RUNTIME vc14)
+    endif()
+endif()
+find_package(OpenCV REQUIRED)
+link_directories(${OpenCV_LIBRARY_DIRS})
 
 # 添加boost支持
 include_directories("C:/Program Files/CppLibrary/boost/include/boost-1_75")
@@ -35,4 +46,4 @@ ${geometry_src}
 "wykobi/wykobi.hpp" 
 "rmath.h")
 
-target_link_libraries(${PROJECT_NAME} Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Charts  Qt${QT_VERSION_MAJOR}::Sql)
+target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS} Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Charts  Qt${QT_VERSION_MAJOR}::Sql)
