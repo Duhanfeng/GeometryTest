@@ -7,19 +7,21 @@ namespace rv
     template<typename _Tp2>
     inline constexpr rv::Polygon<_Tp>::Polygon(const Polygon<_Tp2>& polygon) noexcept
     {
-        for (auto itor = polygon.cbegin(); itor != polygon.cend(); itor++)
+        size_t _size = polygon.size();
+        for (size_t i = 0; i < _size; i++)
         {
-            this->push_back(Point<_Tp>(_Tp(itor->x), _Tp(itor->y)));
+            this->emplace_back(polygon[i]);
         }
     }
 
     template<typename _Tp>
     template<typename _Tp2>
-    inline constexpr Polygon<_Tp>& Polygon<_Tp>::operator=(const Polygon<_Tp2>&) noexcept
+    inline constexpr Polygon<_Tp>& Polygon<_Tp>::operator=(const Polygon<_Tp2>& polygon) noexcept
     {
-        for (auto itor = polygon.cbegin(); itor != polygon.cend(); itor++)
+        size_t _size = polygon.size();
+        for (size_t i = 0; i < _size; i++)
         {
-            this->push_back(Point<_Tp>(_Tp(itor->x), _Tp(itor->y)));
+            this->emplace_back(polygon[i]);
         }
         return *this;
     }
@@ -28,9 +30,11 @@ namespace rv
     inline constexpr Polygon<_Tp> Polygon<_Tp>::move(_Tp dx, _Tp dy) const noexcept
     {
         Polygon<_Tp> polygon;
-        for (auto itor = this->cbegin(); itor != this->cend(); itor++)
+
+        size_t _size = this->size();
+        for (size_t i = 0; i < _size; i++)
         {
-            polygon.push_back(Point<_Tp>(itor->x + dx, itor->y + dy));
+            polygon.emplace_back(Point<_Tp>((*this)[i].x + dx, (*this)[i].y + dy));
         }
 
         return polygon;
@@ -40,9 +44,11 @@ namespace rv
     inline constexpr Polygon<_Tp> Polygon<_Tp>::rotate(const Point<_Tp>& center, double radian) const noexcept
     {
         Polygon<_Tp> polygon;
-        for (auto itor = this->cbegin(); itor != this->cend(); itor++)
+
+        size_t _size = this->size();
+        for (size_t i = 0; i < _size; i++)
         {
-            polygon.push_back(itor->rotate(center, radian));
+            polygon.emplace_back((*this)[i].rotate(center, radian));
         }
 
         return polygon;
@@ -51,21 +57,17 @@ namespace rv
     template<typename _Tp>
     inline constexpr Polygon<_Tp> Polygon<_Tp>::scale(double ratio) const noexcept
     {
-        Polygon<_Tp> polygon;
-        for (auto itor = this->cbegin(); itor != this->cend(); itor++)
-        {
-            polygon.push_back(*itor * ratio);
-        }
 
-        return polygon;
+        return *this * ratio;
     }
 
     template<typename _Tp>
     inline constexpr Polygon<_Tp>& Polygon<_Tp>::operator*=(double c) noexcept
     {
-        for (auto itor = this->cbegin(); itor != this->cend(); itor++)
+        size_t _size = size();
+        for (size_t i = 0; i < _size; i++)
         {
-            *itor = *itor * c;
+            (*this)[i] *= c;
         }
 
         return *this;
@@ -74,9 +76,10 @@ namespace rv
     template<typename _Tp>
     inline constexpr Polygon<_Tp>& Polygon<_Tp>::operator/=(double c)
     {
-        for (auto itor = this->cbegin(); itor != this->cend(); itor++)
+        size_t _size = size();
+        for (size_t i = 0; i < _size; i++)
         {
-            *itor = *itor / c;
+            (*this)[i] /= c;
         }
 
         return *this;
@@ -90,12 +93,15 @@ namespace rv
             return false;
         }
 
-        auto itor1 = polygon1->cbegin();
-        auto itor2 = polygon2->cbegin();
-
-        for (; itor1 != polygon1.cend(); itor1++, itor2++)
+        if (polygon1.size() == 0)
         {
-            if (*itor1 != *itor2)
+            return true;
+        }
+
+        size_t _size = polygon1.size();
+        for (size_t i = 0; i < _size; i++)
+        {
+            if (polygon1[i] != polygon2[i])
             {
                 return false;
             }
@@ -114,9 +120,11 @@ namespace rv
     inline constexpr const Polygon<_Tp> operator*(const Polygon<_Tp>& polygon, double c) noexcept
     {
         Polygon<_Tp> polygon2;
-        for (auto itor = polygon->cbegin(); itor != polygon->cend(); itor++)
+
+        size_t _size = polygon.size();
+        for (size_t i = 0; i < _size; i++)
         {
-            polygon2.push_back(*itor * c);
+            polygon2.emplace_back(polygon[i] * c);
         }
 
         return polygon2;
@@ -126,9 +134,11 @@ namespace rv
     inline constexpr const Polygon<_Tp> operator*(double c, const Polygon<_Tp>& polygon) noexcept
     {
         Polygon<_Tp> polygon2;
-        for (auto itor = polygon->cbegin(); itor != polygon->cend(); itor++)
+
+        size_t _size = polygon.size();
+        for (size_t i = 0; i < _size; i++)
         {
-            polygon2.push_back(*itor * c);
+            polygon2.emplace_back(polygon[i] * c);
         }
 
         return polygon2;
@@ -138,9 +148,11 @@ namespace rv
     inline constexpr const Polygon<_Tp> operator/(const Polygon<_Tp>& polygon, double c)
     {
         Polygon<_Tp> polygon2;
-        for (auto itor = polygon->cbegin(); itor != polygon->cend(); itor++)
+
+        size_t _size = polygon.size();
+        for (size_t i = 0; i < _size; i++)
         {
-            polygon2.push_back(*itor / c);
+            polygon2.emplace_back(polygon[i] / c);
         }
 
         return polygon2;

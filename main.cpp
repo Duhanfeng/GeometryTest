@@ -107,9 +107,14 @@ int main()
     polygon.push_back(rv::Point<double>(10, 20));
     polygon.push_back(rv::Point<double>(10, 20));
 
+    polygon *= 3;
+    polygon /= 3;
+    polygon = polygon * 3;
+    polygon = polygon / 3;
+
     rv::Polygon<double> polygon2 = polygon.move(1, 2);
     rv::Polygon<double> polygon3 = polygon.rotate(rv::Point<double>(0, 0), rv::deg2rad(-20));
-    //rv::Polygon<int> polygon4(polygon3);
+    rv::Polygon<int> polygon4(polygon3);
 
     std::array<double, 4> p41 = {0, 0, 0, 0};
     p41[0] = 3;
