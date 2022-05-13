@@ -11,6 +11,8 @@
 #include "geometry/geometry.hpp"
 #include <array>
 #include <list>
+#include <QDebug>
+#include "adapted/qt_addpted.hpp"
 
 using namespace std;
 //using namespace boost::geometry;
@@ -22,14 +24,6 @@ using namespace std;
 //
 //}
 
-class VectorItor
-{
-public:
-    
-
-private:
-
-};
 
 
 template<
@@ -51,7 +45,64 @@ public:
 
 };
 
+void geometryTest();
+void qtTest();
+
 int main()
+{
+    geometryTest();
+    qtTest();
+
+ //   wykobi::line<double, 2> _line[4];
+ //   _line[0] = wykobi::make_line<double>(1.0, 1.0, 2, 2);
+
+ //   if (wykobi::intersect(_line[0], _line[1]))
+ //   {
+ //       wykobi::point2d<double> wp = wykobi::intersection_point(_line[0], _line[1]);
+ //       
+ //   }
+
+    //typedef boost::polygon::rectangle_data<int> rect;
+    //rect b = boost::polygon::construct<rect>(1, 2, 3, 4);
+
+ //   std::cout << "Area (using Boost.Geometry): "
+ //       << boost::geometry::area(b) << std::endl;
+ //   
+ //   std::cout << sizeof(rect) << "," << sizeof(rv::pointxy<double>) << std::endl;
+
+ //   model::d2::point_xy<double> p1(1, 1), p2(2, 2);
+ //   std::cout << "Distance p1-p2 is: " << distance(p1, p2) << std::endl;
+
+ //   rv::pointxy<double> p3(1.0, 1), p4(2, 2);
+
+ //   
+
+ //   std::cout << "Distance p3-p4 is: " << distance(p3, p4) << std::endl;
+
+	return 0;
+}
+
+void qtTest()
+{
+    std::cout << "qtTest------------" << std::endl;
+
+    //点
+    rv::Point<double> point(20.1, 13.5);
+    QPointF p = converToQPointF(point);
+    std::cout << p.x() << "," << p.y() << std::endl;
+
+    //多边形
+    rv::Rectangle<double> rect(100, 100, 80, 50);
+    QPolygon polygon = converToQPolygon(rect);
+    qDebug() << polygon;
+
+    rv::RotatedRect<double> rect2(100, 100, 80, 50, rv::deg2rad(10));
+    QPolygon polygon2 = converToQPolygon(rect2);
+    qDebug() << polygon2;
+
+}
+
+void geometryTest()
 {
     rv::Size<double> size(10.5, 20.2);
     std::cout << size.width << "," << size.height << std::endl;
@@ -70,7 +121,7 @@ int main()
     std::cout << size2.width << "," << size2.height << std::endl;
 
     rv::Size<> size3;
-    
+
     rv::Point<double> p1(30, 20);
     rv::Point<double> center(20, 20);
 
@@ -83,7 +134,7 @@ int main()
     //生成矩形
     rv::Rectangle<double> rect(p2, size);
     auto topLeft = rect.topLeft();
-    std::cout << topLeft.x << "," << topLeft.y  << std::endl;
+    std::cout << topLeft.x << "," << topLeft.y << std::endl;
 
     std::vector<rv::Point<double>> points = rect.getPoints();
     std::cout << points.at(0).x << "," << points[0].y << std::endl;
@@ -116,7 +167,7 @@ int main()
     rv::Polygon<double> polygon3 = polygon.rotate(rv::Point<double>(0, 0), rv::deg2rad(-20));
     rv::Polygon<int> polygon4(polygon3);
 
-    std::array<double, 4> p41 = {0, 0, 0, 0};
+    std::array<double, 4> p41 = { 0, 0, 0, 0 };
     p41[0] = 3;
 
     //行程编码
@@ -132,31 +183,5 @@ int main()
 
     rv::Runs<double> run3 = runs2;
 
- //   wykobi::line<double, 2> _line[4];
- //   _line[0] = wykobi::make_line<double>(1.0, 1.0, 2, 2);
 
- //   if (wykobi::intersect(_line[0], _line[1]))
- //   {
- //       wykobi::point2d<double> wp = wykobi::intersection_point(_line[0], _line[1]);
- //       
- //   }
-
-    //typedef boost::polygon::rectangle_data<int> rect;
-    //rect b = boost::polygon::construct<rect>(1, 2, 3, 4);
-
- //   std::cout << "Area (using Boost.Geometry): "
- //       << boost::geometry::area(b) << std::endl;
- //   
- //   std::cout << sizeof(rect) << "," << sizeof(rv::pointxy<double>) << std::endl;
-
- //   model::d2::point_xy<double> p1(1, 1), p2(2, 2);
- //   std::cout << "Distance p1-p2 is: " << distance(p1, p2) << std::endl;
-
- //   rv::pointxy<double> p3(1.0, 1), p4(2, 2);
-
- //   
-
- //   std::cout << "Distance p3-p4 is: " << distance(p3, p4) << std::endl;
-
-	return 0;
 }

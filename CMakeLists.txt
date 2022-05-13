@@ -11,22 +11,16 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 
 # 添加boost支持
-if (WIN32)
-    include_directories("C:/Program Files/CppLibrary/boost/include/boost-1_75")
-    link_directories("C:/Program Files/CppLibrary/boost/lib")
-    if(${CMAKE_BUILD_TYPE} STREQUAL Release)
-        set(BOOST_SERIALIZATION_LIB "libboost_serialization-vc142-mt-x64-1_75")
-    else()
-        set(BOOST_SERIALIZATION_LIB "libboost_serialization-vc142-mt-gd-x64-1_75")
-    endif()
-else()
-    find_package(Boost REQUIRED)
-    if(Boost_FOUND)
-        include_directories(${Boost_INCLUDE_DIRS})
-        set(BOOST_SERIALIZATION_LIB "/usr/lib/arm-linux-gnueabihf/libboost_serialization.so")
-    endif()
-endif()
-link_libraries(${BOOST_SERIALIZATION_LIB})
+include_directories("C:/Program Files/CppLibrary/boost/include/boost-1_75")
+
+# 添加Qt支持
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR}Charts)   #直方图控件需要用到
+find_package(Qt${QT_VERSION_MAJOR}Sql)      #日志类需要用到
 
 # geometry
 file(GLOB geometry_src geometry/*.cpp geometry/*.h geometry/*.hpp)
@@ -35,8 +29,9 @@ message(geometry_src: ${geometry_src})
 # 将源代码添加到此项目的可执行文件。
 add_executable (GeometryTest 
 ${geometry_src}
+"adapted/qt_addpted.hpp" 
 "main.cpp" 
 "wykobi/wykobi.hpp" 
 "rmath.h")
 
-# TODO: 如有需要，请添加测试并安装目标。
+target_link_libraries(${PROJECT_NAME} Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Charts  Qt${QT_VERSION_MAJOR}::Sql)
