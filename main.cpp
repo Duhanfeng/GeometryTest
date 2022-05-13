@@ -12,7 +12,8 @@
 #include <array>
 #include <list>
 #include <QDebug>
-#include "adapted/qt_addpted.hpp"
+#include "adapted/adapted_qt.hpp"
+#include "adapted/adapted_cv.hpp"
 
 using namespace std;
 //using namespace boost::geometry;

@@ -1,4 +1,4 @@
-﻿#include "qt_addpted.hpp"
+﻿#include "adapted_qt.hpp"
 
 
 template <typename _Tp>

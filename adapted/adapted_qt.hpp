@@ -39,4 +39,4 @@ inline constexpr QPolygonF converToQPolygonF(const rv::Rectangle<_Tp>& rect) noe
 template <typename _Tp>
 inline constexpr QPolygonF converToQPolygonF(const rv::RotatedRect<_Tp>& rect) noexcept;
 
-#include "qt_addpted.inl"
+#include "adapted_qt.inl"

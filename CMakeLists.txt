@@ -29,8 +29,9 @@ message(geometry_src: ${geometry_src})
 # 将源代码添加到此项目的可执行文件。
 add_executable (GeometryTest 
 ${geometry_src}
-"adapted/qt_addpted.hpp" 
 "main.cpp" 
+"adapted/adapted_qt.hpp" 
+"adapted/adapted_cv.hpp" 
 "wykobi/wykobi.hpp" 
 "rmath.h")
 
