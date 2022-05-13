@@ -10,6 +10,7 @@
 #include "wykobi/wykobi.hpp"
 #include "geometry/geometry.hpp"
 #include <array>
+#include <list>
 
 using namespace std;
 //using namespace boost::geometry;
@@ -20,6 +21,35 @@ using namespace std;
 //    using pointxy = boost::geometry::model::d2::point_xy<CoordinateType, CoordinateSystem>;
 //
 //}
+
+class VectorItor
+{
+public:
+    
+
+private:
+
+};
+
+
+template<
+    typename _Tp = double,                                          //类型
+    template<typename, typename> class Container = std::vector,     //容器
+    template<typename> class Allocator = std::allocator             //构造器
+>
+class Polygon : public Container<rv::Point<_Tp>, Allocator<rv::Point<_Tp>>>
+{
+    typedef Container<rv::Point<_Tp>, Allocator<rv::Point<_Tp>>> base_type;
+public:
+
+    //构造
+    constexpr Polygon() noexcept : base_type() {}
+    template <typename Iterator> constexpr Polygon(Iterator begin, Iterator end) noexcept : base_type(begin, end) {}
+    constexpr Polygon(std::initializer_list<rv::Point<_Tp>> l) noexcept : base_type(l.begin(), l.end()) {}
+
+    //功能封装
+
+};
 
 int main()
 {
@@ -79,11 +109,23 @@ int main()
 
     rv::Polygon<double> polygon2 = polygon.move(1, 2);
     rv::Polygon<double> polygon3 = polygon.rotate(rv::Point<double>(0, 0), rv::deg2rad(-20));
-    rv::Polygon<int> polygon4(polygon3);
+    //rv::Polygon<int> polygon4(polygon3);
 
     std::array<double, 4> p41 = {0, 0, 0, 0};
     p41[0] = 3;
 
+    //行程编码
+    rv::Runs<short> runs;
+    runs.emplace_back(rv::Run<>{10, 20, 20});
+    runs.move(20, 30);
+
+    runs *= 3;
+    runs /= 5;
+
+    rv::Runs<short> runs2 = runs * 5;
+    runs2 = runs / 3;
+
+    rv::Runs<double> run3 = runs2;
 
  //   wykobi::line<double, 2> _line[4];
  //   _line[0] = wykobi::make_line<double>(1.0, 1.0, 2, 2);
@@ -111,6 +153,5 @@ int main()
 
  //   std::cout << "Distance p3-p4 is: " << distance(p3, p4) << std::endl;
 
-	//cout << "Hello CMake." << endl;
 	return 0;
 }

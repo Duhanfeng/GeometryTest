@@ -67,6 +67,8 @@ namespace rv
         {
             *itor = *itor * c;
         }
+
+        return *this;
     }
 
     template<typename _Tp>
@@ -76,6 +78,8 @@ namespace rv
         {
             *itor = *itor / c;
         }
+
+        return *this;
     }
 
     template<typename _Tp>

@@ -11,7 +11,7 @@ namespace rv
 #endif
 
     template<typename _Tp>
-    constexpr inline bool fuzzyCompare(_Tp p1, _Tp p2)
+    constexpr inline bool fuzzyCompare(_Tp p1, _Tp p2) noexcept
     {
         return p1 == p2;
     }
@@ -35,24 +35,24 @@ namespace rv
     template<typename _Tp>
     constexpr inline double rad2deg(_Tp rad)
     {
-        return double(rad) * 180.0 / 3.141592653589;
+        return double(rad) * 180.0 / RV_PI;
     }
 
     constexpr inline float rad2deg(float rad)
     {
-        return float(rad * 180.0f / 3.141592653589);
+        return float(rad * 180.0f / RV_PI);
     }
 
     //角度转弧度
     template<typename _Tp>
     constexpr inline double deg2rad(_Tp deg)
     {
-        return double(deg) * 3.141592653589 / 180.0;
+        return double(deg) * RV_PI / 180.0;
     }
 
     constexpr inline float deg2rad(float deg)
     {
-        return float(deg * 3.141592653589 / 180);
+        return float(deg * RV_PI / 180);
     }
 
     //点位绕点旋转
