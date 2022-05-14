@@ -2,7 +2,7 @@
 
 namespace rv
 {
-    template<typename _Tp = double>
+    template<typename _Tp = short>
     class Run
     {
     public:

@@ -41,6 +41,8 @@ message(geometry_src: ${geometry_src})
 add_executable (GeometryTest 
 ${geometry_src}
 "main.cpp" 
+"region.h" 
+"region.cpp"
 "adapted/adapted_qt.hpp" 
 "adapted/adapted_cv.hpp" 
 "wykobi/wykobi.hpp" 

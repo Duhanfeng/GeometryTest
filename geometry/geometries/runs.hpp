@@ -24,6 +24,7 @@ namespace rv
         //功能函数
         inline constexpr Runs move(_Tp dx, _Tp dy) const noexcept;
         inline constexpr Runs scale(double ratio) const noexcept;
+        inline constexpr void readFormImage(unsigned char* data, int width, int height);    //备注:要求data必须是连续的内存
 
         //符号重载
         inline constexpr Runs& operator*=(double c) noexcept;

@@ -14,6 +14,8 @@
 #include <QDebug>
 #include "adapted/adapted_qt.hpp"
 #include "adapted/adapted_cv.hpp"
+#include "region.h"
+
 
 using namespace std;
 //using namespace boost::geometry;
@@ -49,12 +51,14 @@ public:
 void geometryTest();
 void qtTest();
 void cvTest();
+void regionTest();
 
 int main()
 {
     geometryTest();
     qtTest();
     cvTest();
+    regionTest();
 
  //   wykobi::line<double, 2> _line[4];
  //   _line[0] = wykobi::make_line<double>(1.0, 1.0, 2, 2);
@@ -218,5 +222,10 @@ void geometryTest()
     rv::Contours<double> contours2 = contours.rotate({ 0, 0 }, 1);
 
 
+
+}
+
+void regionTest()
+{
 
 }

@@ -36,7 +36,6 @@ inline constexpr cv::RotatedRect converToCvRotatedRect(const rv::RotatedRect<_Tp
 
 
 /* ----------------------- cv转rv ----------------------- */
-
 template <typename _Tp>
 inline constexpr rv::Size<int> converToSize(const cv::Size_<_Tp>& size) noexcept;
 
@@ -54,6 +53,12 @@ inline constexpr rv::Rectangle<int> converToRect(const cv::Rect_<_Tp>& rect) noe
 
 template <typename _Tp>
 inline constexpr rv::Rectangle<double> converToRectF(const cv::Rect_<_Tp>& rect) noexcept;
+
+template <typename _Tp>
+inline constexpr rv::RotatedRect<int> converToRotatedRect(const cv::Rect_<_Tp>& rect) noexcept;
+
+template <typename _Tp>
+inline constexpr rv::RotatedRect<double> converToRotatedRect(const cv::Rect_<_Tp>& rect) noexcept;
 
 inline constexpr rv::RotatedRect<int> converToRotatedRect(const cv::RotatedRect& rect) noexcept;
 inline constexpr rv::RotatedRect<double> converToRotatedRectF(const cv::RotatedRect& rect) noexcept;
