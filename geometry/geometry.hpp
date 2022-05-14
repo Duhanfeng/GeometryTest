@@ -11,6 +11,7 @@
 #include "geometries/ray.hpp"
 #include "geometries/pose.hpp"
 #include "geometries/polygon.hpp"
+#include "geometries/contours.hpp"
 #include "geometries/runs.hpp"
 
 /*
@@ -22,17 +23,17 @@
 5.圆,Circle
 6.圆弧,Arc
 7.圆环,Annulus
-8.多边形,Polygon
-9.射线,Ray
-10.位置,Pose
+8.射线,Ray
+9.位置,Pose
+10.多边形,Polygon
 11.点集(离散),PointSet
-11.轮廓,Contour
-12.线集
+12.轮廓,Contour
+13.游程编码/行程编码
 */
 
 enum class GeometryType
 {
-    None,
+    None = 0,
     Point,
     Line,
     Rectangle,
@@ -40,10 +41,10 @@ enum class GeometryType
     Circle,
     Arc,
     Annulus,
-    Polygon,
     Ray,
     Pose,
+    Polygon,
     PointSet,
-    Contour,
-    Lines,
+    Contours,
+    Runs,
 };

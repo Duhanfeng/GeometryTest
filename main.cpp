@@ -173,6 +173,9 @@ void geometryTest()
     rv::Arc<double> arc(10.1, 102.3, 1, 2, 3);
     rv::Arc<int> arc2(arc);
 
+    rv::Arc<double> arc3 = arc.move(5, 10.2);
+    rv::Arc<double> arc4 = arc.rotate({0,0}, rv::deg2rad(10));
+
     //圆环
     rv::Annulus<double> annulus;
 
@@ -201,11 +204,19 @@ void geometryTest()
 
     runs *= 3;
     runs /= 5;
-
     rv::Runs<short> runs2 = runs * 5;
     runs2 = runs / 3;
-
     rv::Runs<double> run3 = runs2;
+
+    //轮廓
+    rv::Contours<double> contours;
+    contours.emplace_back(polygon);
+    contours.emplace_back(polygon2);
+    contours.emplace_back(polygon3);
+    contours.emplace_back(polygon4);
+
+    rv::Contours<double> contours2 = contours.rotate({ 0, 0 }, 1);
+
 
 
 }

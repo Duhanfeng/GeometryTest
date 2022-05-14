@@ -39,6 +39,8 @@ namespace rv
     template<typename _Tp> inline constexpr const Polygon<_Tp> operator*(double, const Polygon<_Tp>&) noexcept;
     template<typename _Tp> inline constexpr const Polygon<_Tp> operator/(const Polygon<_Tp>&, double);
 
+    template<typename _Tp> using PointSet = Polygon<_Tp>;
+
 }
 
 #include "polygon.inl"

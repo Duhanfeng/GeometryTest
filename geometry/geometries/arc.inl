@@ -5,7 +5,8 @@ namespace rv
 {
     template<typename _Tp>
     inline constexpr rv::Arc<_Tp>::Arc() noexcept :
-        Circle(),
+        center(0, 0),
+        radius(0),
         angleStart(_Tp(0)), 
         angleEnd(_Tp(0))
     {
@@ -13,7 +14,8 @@ namespace rv
 
     template<typename _Tp>
     inline constexpr rv::Arc<_Tp>::Arc(_Tp x, _Tp y, _Tp _radius, double _angleStart, double _angleEnd) noexcept :
-        Circle(x, y, _radius),
+        center(x, y),
+        radius(_radius),
         angleStart(_angleStart),
         angleEnd(_angleEnd)
     {
@@ -21,7 +23,8 @@ namespace rv
 
     template<typename _Tp>
     inline constexpr rv::Arc<_Tp>::Arc(const Point<_Tp>& _center, _Tp _radius, double _angleStart, double _angleEnd) noexcept :
-        Circle(_center, _radius),
+        center(_center),
+        radius(_radius),
         angleStart(_angleStart),
         angleEnd(_angleEnd)
     {
@@ -29,7 +32,8 @@ namespace rv
 
     template<typename _Tp>
     inline constexpr rv::Arc<_Tp>::Arc(const Circle<_Tp>& _circle, double _startAngle, double _endAngle) noexcept :
-        Circle(_circle),
+        center(_circle.center),
+        radius(_circle.radius),
         angleStart(_startAngle),
         angleEnd(_endAngle)
     {
@@ -45,6 +49,35 @@ namespace rv
         angleEnd = arc.angleEnd;
     }
 
+    template<typename _Tp>
+    template<typename _Tp2>
+    inline constexpr Arc<_Tp>& Arc<_Tp>::operator=(const Arc<_Tp2>& arc) noexcept
+    {
+        center = Point<_Tp>(arc.center);
+        radius = _Tp(arc.radius);
+        angleStart = arc.angleStart;
+        angleEnd = arc.angleEnd;
+        return *this;
+    }
+
+    template<typename _Tp>
+    inline constexpr bool Arc<_Tp>::isNull() const noexcept
+    {
+        return isNull(radius);
+    }
+
+    template<typename _Tp>
+    inline constexpr Arc<_Tp> Arc<_Tp>::move(_Tp dx, _Tp dy) const noexcept
+    {
+        return Arc<_Tp>(center.move(dx, dy), radius, angleStart, angleEnd);
+    }
+
+    template<typename _Tp>
+    inline constexpr Arc<_Tp> Arc<_Tp>::rotate(const Point<_Tp>& _center, double _radian) const noexcept
+    {
+        return Arc<_Tp>(center.rotate(_center, _radian), radius, angleStart + _radian, angleEnd + _radian);
+    }
+    
     template<typename _Tp>
     inline constexpr double Arc<_Tp>::angleSpan() const noexcept
     {
@@ -80,13 +113,18 @@ namespace rv
     }
 
     template<typename _Tp>
-    template<typename _Tp2>
-    inline constexpr Arc<_Tp>& Arc<_Tp>::operator=(const Arc<_Tp2>& arc) noexcept
+    inline constexpr Arc<_Tp>& Arc<_Tp>::operator*=(double c) noexcept
     {
-        center = Point<_Tp>(arc.center);
-        radius = _Tp(arc.radius);
-        angleStart = arc.angleStart;
-        angleEnd = arc.angleEnd;
+        center *= c;
+        radius *= c;
+        return *this;
+    }
+
+    template<typename _Tp>
+    inline constexpr Arc<_Tp>& Arc<_Tp>::operator/=(double c)
+    {
+        center /= c;
+        radius /= c;
         return *this;
     }
 
