@@ -64,7 +64,7 @@ namespace rv
     template<typename _Tp>
     inline constexpr Polygon<_Tp>& Polygon<_Tp>::operator*=(double c) noexcept
     {
-        size_t _size = size();
+        size_t _size = this->size();
         for (size_t i = 0; i < _size; i++)
         {
             (*this)[i] *= c;
@@ -76,7 +76,7 @@ namespace rv
     template<typename _Tp>
     inline constexpr Polygon<_Tp>& Polygon<_Tp>::operator/=(double c)
     {
-        size_t _size = size();
+        size_t _size = this->size();
         for (size_t i = 0; i < _size; i++)
         {
             (*this)[i] /= c;

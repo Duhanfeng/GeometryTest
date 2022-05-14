@@ -16,7 +16,7 @@ namespace rv
     }
 
     template<typename _Tp>
-    inline constexpr rv::Pose<_Tp>::Pose(const Point<_Tp>& center, double _angle) noexcept :
+    inline constexpr rv::Pose<_Tp>::Pose(const Point<_Tp>& _center, double _angle) noexcept :
         center(_center), 
         angle(_angle)
     {

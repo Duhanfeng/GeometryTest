@@ -16,7 +16,7 @@ namespace rv
     }
 
     template<typename _Tp>
-    inline constexpr rv::Ray<_Tp>::Ray(const Point<_Tp>& center, double _angle) noexcept :
+    inline constexpr rv::Ray<_Tp>::Ray(const Point<_Tp>& _center, double _angle) noexcept :
         center(_center), 
         angle(_angle)
     {

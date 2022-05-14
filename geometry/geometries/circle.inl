@@ -16,7 +16,7 @@ namespace rv
     }
 
     template<typename _Tp>
-    inline constexpr rv::Circle<_Tp>::Circle(const Point<_Tp>& center, _Tp _radius) noexcept :
+    inline constexpr rv::Circle<_Tp>::Circle(const Point<_Tp>& _center, _Tp _radius) noexcept :
         center(_center), 
         radius(_radius)
     {

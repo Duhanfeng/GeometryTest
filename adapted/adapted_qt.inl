@@ -1,5 +1,5 @@
 ﻿#include "adapted_qt.hpp"
-
+#include <QVector>
 
 template <typename _Tp>
 inline constexpr QSize converToQSize(const rv::Size<_Tp>& size) noexcept

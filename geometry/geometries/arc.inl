@@ -12,24 +12,24 @@ namespace rv
     }
 
     template<typename _Tp>
-    inline constexpr rv::Arc<_Tp>::Arc(_Tp x, _Tp y, _Tp radius, double _angleStart, double _angleEnd) noexcept :
-        Circle(x, y, radius),
+    inline constexpr rv::Arc<_Tp>::Arc(_Tp x, _Tp y, _Tp _radius, double _angleStart, double _angleEnd) noexcept :
+        Circle(x, y, _radius),
         angleStart(_angleStart),
         angleEnd(_angleEnd)
     {
     }
 
     template<typename _Tp>
-    inline constexpr rv::Arc<_Tp>::Arc(const Point<_Tp>& center, _Tp _radius, double _angleStart, double _angleEnd) noexcept :
-        Circle(center, radius),
+    inline constexpr rv::Arc<_Tp>::Arc(const Point<_Tp>& _center, _Tp _radius, double _angleStart, double _angleEnd) noexcept :
+        Circle(_center, _radius),
         angleStart(_angleStart),
         angleEnd(_angleEnd)
     {
     }
 
     template<typename _Tp>
-    inline constexpr rv::Arc<_Tp>::Arc(const Circle<_Tp>& circle, double _startAngle, double _endAngle) noexcept :
-        Circle(circle),
+    inline constexpr rv::Arc<_Tp>::Arc(const Circle<_Tp>& _circle, double _startAngle, double _endAngle) noexcept :
+        Circle(_circle),
         angleStart(_startAngle),
         angleEnd(_endAngle)
     {
@@ -69,11 +69,11 @@ namespace rv
         //将angle限制在[start,start+2pi]之中
         while (angle < angleStart)
         {
-            angle += 2 * CV_PI;
+            angle += 2 * RV_PI;
         }
-        while (angle > (angleStart + 2 * CV_PI))
+        while (angle > (angleStart + 2 * RV_PI))
         {
-            angle -= 2 * CV_PI;
+            angle -= 2 * RV_PI;
         }
 
         return ((angle >= angleStart) && (angle <= (angleStart + angleSpan())));
