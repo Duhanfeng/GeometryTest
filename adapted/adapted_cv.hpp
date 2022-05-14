@@ -37,22 +37,25 @@ inline constexpr cv::RotatedRect converToCvRotatedRect(const rv::RotatedRect<_Tp
 
 /* ----------------------- cv转rv ----------------------- */
 
-rv::Size<int> converToSize(cv::Size size);
-rv::Size<int> converToSize(cv::Size2f size);
-rv::Size<double> converToSizeF(cv::Size size);
-rv::Size<double> converToSizeF(cv::Size2f size);
+template <typename _Tp>
+inline constexpr rv::Size<int> converToSize(const cv::Size_<_Tp>& size) noexcept;
 
-rv::Point<int> converToPoint(cv::Point point);
-rv::Point<int> converToPoint(cv::Point2f point);
-rv::Point<double> converToPointF(cv::Point point);
-rv::Point<double> converToPointF(cv::Point2f point);
+template <typename _Tp>
+inline constexpr rv::Size<double> converToSizeF(const cv::Size_<_Tp>& size) noexcept;
 
-rv::Rectangle<int> converToRect(cv::Rect rect);
-rv::Rectangle<int> converToRect(cv::Rect2f rect);
-rv::Rectangle<double> converToRectF(cv::Rect rect);
-rv::Rectangle<double> converToRectF(cv::Rect2f rect);
+template <typename _Tp>
+inline constexpr rv::Point<int> converToPoint(const cv::Point_<_Tp>& point) noexcept;
 
-rv::RotatedRect<int> converToRotatedRect(cv::RotatedRect rect);
-rv::RotatedRect<double> converToRotatedRectF(cv::RotatedRect rect);
+template <typename _Tp>
+inline constexpr rv::Point<double> converToPointF(const cv::Point_<_Tp>& point) noexcept;
+
+template <typename _Tp>
+inline constexpr rv::Rectangle<int> converToRect(const cv::Rect_<_Tp>& rect) noexcept;
+
+template <typename _Tp>
+inline constexpr rv::Rectangle<double> converToRectF(const cv::Rect_<_Tp>& rect) noexcept;
+
+inline constexpr rv::RotatedRect<int> converToRotatedRect(const cv::RotatedRect& rect) noexcept;
+inline constexpr rv::RotatedRect<double> converToRotatedRectF(const cv::RotatedRect& rect) noexcept;
 
 #include "adapted_cv.inl"

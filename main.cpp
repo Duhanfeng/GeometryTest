@@ -48,11 +48,13 @@ public:
 
 void geometryTest();
 void qtTest();
+void cvTest();
 
 int main()
 {
     geometryTest();
     qtTest();
+    cvTest();
 
  //   wykobi::line<double, 2> _line[4];
  //   _line[0] = wykobi::make_line<double>(1.0, 1.0, 2, 2);
@@ -100,6 +102,27 @@ void qtTest()
     rv::RotatedRect<double> rect2(100, 100, 80, 50, rv::deg2rad(10));
     QPolygon polygon2 = converToQPolygon(rect2);
     qDebug() << polygon2;
+
+}
+
+void cvTest()
+{
+    rv::Size<double> size(250, 250);
+    rv::Point<double> point(100, 200);
+    rv::Rectangle<double> rect(250, 250, 50, 80);
+    rv::RotatedRect<double> rect2(250, 250, 50, 80, rv::deg2rad(10));
+
+    converToCvSize(size);
+    converToCvPoint(point);
+    converToCvRect(rect);
+    converToCvRotatedRect(rect2);
+
+    converToCvSizeF(size);
+    converToCvPointF(point);
+    converToCvRectF(rect);
+    //converToCvRotatedRect(rect2);
+
+    rect2 = converToRotatedRect(converToCvRotatedRect(rect2));
 
 }
 

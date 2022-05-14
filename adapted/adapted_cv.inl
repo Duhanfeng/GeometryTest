@@ -47,3 +47,59 @@ inline constexpr cv::RotatedRect converToCvRotatedRect(const rv::RotatedRect<_Tp
 {
     return cv::RotatedRect(converToCvPoint(rect.center), converToCvSize(rect.size), rv::rad2deg(rect.angle));
 }
+
+
+/* ----------------------- cv转rv ----------------------- */
+
+
+template <typename _Tp>
+inline constexpr rv::Size<int> converToSize(const cv::Size_<_Tp>& size) noexcept
+{
+    return rv::Size<int>((int)size.width, (int)size.height);
+}
+
+template <typename _Tp>
+inline constexpr rv::Size<double> converToSizeF(const cv::Size_<_Tp>& size) noexcept
+{
+    return rv::Size<double>((double)size.width, (double)size.height);
+}
+
+template <typename _Tp>
+inline constexpr rv::Point<int> converToPoint(const cv::Point_<_Tp>& point) noexcept
+{
+    return rv::Point<int>((int)point.x, (int)point.y);
+}
+
+template <typename _Tp>
+inline constexpr rv::Point<double> converToPointF(const cv::Point_<_Tp>& point) noexcept
+{
+    return rv::Point<double>((double)point.x, (double)point.y);
+}
+
+template <typename _Tp>
+inline constexpr rv::Rectangle<int> converToRect(const cv::Rect_<_Tp>& rect) noexcept
+{
+    //opencv中的rect类型,x和y表示的是左上角的坐标
+    rv::Point<int> center(int(rect.x + rect.width / 2), int(rect.y + rect.height / 2));
+
+    return rv::Rectangle<int>(center, converToSize(rect.size));
+}
+
+template <typename _Tp>
+inline constexpr rv::Rectangle<double> converToRectF(const cv::Rect_<_Tp>& rect) noexcept
+{
+    //opencv中的rect类型,x和y表示的是左上角的坐标
+    rv::Point<double> center(rect.x + rect.width / 2, rect.y + rect.height / 2);
+
+    return rv::Rectangle<double>(center, converToSizeF(rect.size));
+}
+
+inline constexpr rv::RotatedRect<int> converToRotatedRect(const cv::RotatedRect& rect) noexcept
+{
+    return rv::RotatedRect<int>(converToPoint(rect.center), converToSize(rect.size), rv::deg2rad(rect.angle));
+}
+
+inline constexpr rv::RotatedRect<double> converToRotatedRectF(const cv::RotatedRect& rect) noexcept
+{
+    return rv::RotatedRect<int>(converToPointF(rect.center), converToSizeF(rect.size), rv::deg2rad(rect.angle));
+}
