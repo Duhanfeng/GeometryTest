@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "xutility": "cpp",
-        "complex": "cpp",
-        "format": "cpp",
-        "xtr1common": "cpp",
-        "chrono": "cpp"
-    }
-}
