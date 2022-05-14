@@ -1,6 +1,9 @@
 ﻿#include "adapted_qt.hpp"
 #include <QVector>
 
+
+/* ----------------------- rv转qt ----------------------- */
+
 template <typename _Tp>
 inline constexpr QSize converToQSize(const rv::Size<_Tp>& size) noexcept
 {
@@ -84,3 +87,71 @@ inline constexpr QPolygonF converToQPolygonF(const rv::RotatedRect<_Tp>& rect) n
 
     return QPolygonF(polygon);
 }
+
+
+/* ----------------------- qt转rv ----------------------- */
+
+inline constexpr rv::Size<int> converToSize(const QSize& size) noexcept
+{
+    return rv::Size<int>((int)size.width(), (int)size.height());
+}
+
+inline constexpr rv::Size<int> converToSize(const QSizeF& size) noexcept
+{
+    return rv::Size<int>((int)size.width(), (int)size.height());
+}
+
+
+inline constexpr rv::Size<double> converToSizeF(const QSize& size) noexcept
+{
+    return rv::Size<double>((double)size.width(), (double)size.height());
+}
+
+inline constexpr rv::Size<double> converToSizeF(const QSizeF& size) noexcept
+{
+    return rv::Size<double>((double)size.width(), (double)size.height());
+}
+
+
+inline constexpr rv::Point<int> converToPoint(const QPoint& point) noexcept
+{
+    return rv::Point<int>((int)point.x(), (int)point.y());
+}
+
+inline constexpr rv::Point<int> converToPoint(const QPointF& point) noexcept
+{
+    return rv::Point<int>((int)point.x(), (int)point.y());
+}
+
+
+inline constexpr rv::Point<double> converToPointF(const QPoint& point) noexcept
+{
+    return rv::Point<double>((double)point.x(), (double)point.y());
+}
+
+inline constexpr rv::Point<double> converToPointF(const QPointF& point) noexcept
+{
+    return rv::Point<double>((double)point.x(), (double)point.y());
+}
+
+inline constexpr rv::Rectangle<int> converToRect(const QRect& rect) noexcept
+{
+    return rv::Rectangle<int>(converToPoint(rect.center()), converToSize(rect.size()));
+}
+
+inline constexpr rv::Rectangle<int> converToRect(const QRectF& rect) noexcept
+{
+    return rv::Rectangle<int>(converToPoint(rect.center()), converToSize(rect.size()));
+}
+
+
+inline constexpr rv::Rectangle<double> converToRectF(const QRect& rect) noexcept
+{
+    return rv::Rectangle<double>(converToPointF(rect.center()), converToSizeF(rect.size()));
+}
+
+inline constexpr rv::Rectangle<double> converToRectF(const QRectF& rect) noexcept
+{
+    return rv::Rectangle<double>(converToPointF(rect.center()), converToSizeF(rect.size()));
+}
+
