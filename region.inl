@@ -80,7 +80,7 @@ namespace rv
         shapeRegion = std::make_shared<GeometryRegion>(); 
 
         shapeRegion->type = GeometryType::RotatedRect;
-        shapeRegion->rotateRect = RotatedRect(rect, 0);
+        shapeRegion->rotateRect = RotatedRect<double>(rect, 0);
     }
 
     template<typename _Tp>
