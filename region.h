@@ -54,8 +54,8 @@ namespace rv
         void clear();
         cv::Mat getRegionMask(int rows, int cols) const;        //以opencv的mask方式输出
 
-        template<typename _Tp>
-        static std::shared_ptr<Runs<_Tp>> convertToRuns(cv::InputArray mask);
+        static std::shared_ptr<Runs<short>> convertToRuns(cv::InputArray mask);
+        static rv::Region mask2Region(cv::InputArray mask);
 
     public:
         RegionType regionType = RegionType::None;               //决定region使用哪种解析方式
