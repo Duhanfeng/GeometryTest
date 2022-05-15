@@ -1,4 +1,5 @@
 ﻿#include "region.h"
+#include <memory>
 
 namespace rv
 {
@@ -36,17 +37,17 @@ namespace rv
             switch (r.regionType)
             {
             case rv::RegionType::Geometry:
-                shapeRegion = std::shared_ptr<GeometryRegion>(new GeometryRegion());
+                shapeRegion = std::make_shared<GeometryRegion>(); 
                 *shapeRegion = *r.shapeRegion;
                 break;
             case rv::RegionType::Contours:
-                contours = std::shared_ptr<Contours<double>>(new Contours<double>(*r.contours));
+                contours = std::make_shared<Contours<double>>(*r.contours); 
                 break;
             case rv::RegionType::PointSet:
-                pointSet = std::shared_ptr<PointSet<double>>(new PointSet<double>(*r.pointSet));
+                pointSet = std::make_shared<PointSet<double>>(*r.pointSet); 
                 break;
             case rv::RegionType::Runs:
-                runs = std::shared_ptr<Runs<double>>(new Runs<double>(*r.runs));
+                runs = std::make_shared<Runs<short>>(*r.runs); 
                 break;
             default:
                 break;
@@ -100,8 +101,8 @@ namespace rv
 
     cv::Mat Region::getRegionMask(int rows, int cols) const
     {
-        cv::Mat mask = cv::Mat::zeros(rows, cols, CV_8UC1);
-
+        cv::Mat mask;
+        
         switch (regionType)
         {
         case rv::RegionType::Geometry:
@@ -110,6 +111,36 @@ namespace rv
                 return cv::Mat();
             }
 
+            switch (shapeRegion->type)
+            {
+            case GeometryType::Line:
+                mask = cv::Mat::zeros(rows, cols, CV_8UC1);
+                cv::line(mask, converToCvPoint(shapeRegion->line.p1), converToCvPoint(shapeRegion->line.p2), {255, 255, 255}, 1, 8);
+                break;
+            case GeometryType::Circle:
+                mask = cv::Mat::zeros(rows, cols, CV_8UC1);
+                cv::circle(mask, converToCvPoint(shapeRegion->circle.center), shapeRegion->circle.radius, {255, 255, 255}, cv::FILLED, 8);
+                break;
+            case GeometryType::RotatedRect:
+            {
+                cv::Point2f pts[4];
+                converToCvRotatedRect(shapeRegion->rotateRect).points(pts);
+                cv::Point pts2[4];
+                for (size_t i = 0; i < 4; i++)
+                {
+                    pts2[i] = pts[i];
+                }
+                mask = cv::Mat::zeros(rows, cols, CV_8UC1);
+                cv::fillConvexPoly(mask, pts2, 4, { 255, 255, 255 });
+                break;
+            }
+            case GeometryType::Polygon:
+
+                break;
+            default:
+                break;
+            }
+            
             break;
         case rv::RegionType::Contours:
             if (contours == nullptr)
@@ -124,22 +155,20 @@ namespace rv
             {
                 return cv::Mat();
             }
-
             break;
         case rv::RegionType::Runs:
             if (runs == nullptr)
             {
                 return cv::Mat();
             }
-            break;
+            return drawRuns(runs, rows, cols);
         default:
-            break;
+            return cv::Mat();
         }
 
         return mask;
     }
 
-    
     std::shared_ptr<Runs<short>> Region::convertToRuns(cv::InputArray mask)
     {
         using _Tp = short;
@@ -156,7 +185,7 @@ namespace rv
         _Tp _ce = 0;
 
         //游程编码
-        std::shared_ptr<Runs<_Tp>> runs(new Runs<_Tp>());
+        std::shared_ptr<Runs<_Tp>> runs = std::make_shared<Runs<_Tp>>(); 
         for (int r = 0; r < cvMask.rows; r++)
         {
             uchar* data = cvMask.ptr(r);
@@ -204,4 +233,21 @@ namespace rv
         return rv::Region(convertToRuns(mask));
     }
 
+    cv::Mat Region::drawRuns(std::shared_ptr<Runs<short>> runs, int rows, int cols)
+    {
+        cv::Mat mask = cv::Mat::zeros(rows, cols, CV_8UC1);
+
+        if (runs == nullptr)
+        {
+            mask;
+        }
+
+        size_t _size = runs->size();
+        for (size_t i = 0; i < _size; i++)
+        {
+            cv::line(mask, {(*runs)[i].r, (*runs)[i].cb}, {(*runs)[i].r, (*runs)[i].ce}, {255, 255, 255});
+        }
+
+        return mask;
+    }
 }

@@ -7,7 +7,7 @@
 //#include <boost/geometry/geometries/adapted/boost_polygon.hpp>
 
 #include "rmath.h"
-#include "wykobi/wykobi.hpp"
+//#include "wykobi/wykobi.hpp"
 #include "geometry/geometry.hpp"
 #include <array>
 #include <list>
@@ -99,11 +99,11 @@ void qtTest()
     std::cout << p.x() << "," << p.y() << std::endl;
 
     //多边形
-    rv::Rectangle<double> rect(100, 100, 80, 50);
+    rv::Rectangle<double> rect(500, 500, 80, 50);
     QPolygon polygon = converToQPolygon(rect);
     qDebug() << polygon;
 
-    rv::RotatedRect<double> rect2(100, 100, 80, 50, rv::deg2rad(10));
+    rv::RotatedRect<double> rect2(500, 500, 80, 50, rv::deg2rad(10));
     QPolygon polygon2 = converToQPolygon(rect2);
     qDebug() << polygon2;
 
@@ -225,7 +225,52 @@ void geometryTest()
 
 }
 
+void showImage(cv::InputArray image)
+{
+    if (!image.empty())
+    {
+        cv::imshow("", image);
+        cv::waitKey();
+    }
+    else
+    {
+        //cv::waitKey(1);
+    }
+}
+
 void regionTest()
 {
+    using namespace rv;
+    rv::Region region1;
+    rv::Region region2(cv::RotatedRect({250, 250}, {200, 50}, 30));
+    rv::Region region3(cv::Point_<double>(250, 250), cv::Point_<double>(220, 120));
+    rv::Region region4(cv::Point_<double>(250, 250), 40);
+    rv::Region region5(cv::Rect_<double>(250, 250, 20, 20));
+    rv::Region region6(cv::Rect_<double>(250, 250, 20, 20), 50);
+    rv::Region region7(Line<double>(100, 250, 220, 200));
+    rv::Region region8(Circle<double>(250, 250, 20));
+    rv::Region region9(Rectangle<double>(250, 250, 20, 30));
+    rv::Region region10(RotatedRect<double>(250, 250, 20, 30, 2));
+
+    cv::Mat image1 = region1.getRegionMask(500, 500);
+    showImage(image1);
+    cv::Mat image2 = region2.getRegionMask(500, 500);
+    showImage(image2);
+    cv::Mat image3 = region3.getRegionMask(500, 500);
+    showImage(image3);
+    cv::Mat image4 = region4.getRegionMask(500, 500);
+    showImage(image4);
+    cv::Mat image5 = region5.getRegionMask(500, 500);
+    showImage(image5);
+    cv::Mat image6 = region6.getRegionMask(500, 500);
+    showImage(image6);
+    cv::Mat image7 = region7.getRegionMask(500, 500);
+    showImage(image7);
+    cv::Mat image8 = region8.getRegionMask(500, 500);
+    showImage(image8);
+    cv::Mat image9 = region9.getRegionMask(500, 500);
+    showImage(image9);
+    cv::Mat image10 = region10.getRegionMask(500, 500);
+    showImage(image10);
 
 }

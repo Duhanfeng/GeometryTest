@@ -1,4 +1,5 @@
 ﻿#include "rectangle.hpp"
+#include <vector>
 
 namespace rv
 {

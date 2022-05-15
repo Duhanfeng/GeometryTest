@@ -58,9 +58,9 @@ template <typename _Tp>
 inline constexpr rv::RotatedRect<int> converToRotatedRect(const cv::Rect_<_Tp>& rect) noexcept;
 
 template <typename _Tp>
-inline constexpr rv::RotatedRect<double> converToRotatedRect(const cv::Rect_<_Tp>& rect) noexcept;
+inline constexpr rv::RotatedRect<double> converToRotatedRectF(const cv::Rect_<_Tp>& rect) noexcept;
 
-inline constexpr rv::RotatedRect<int> converToRotatedRect(const cv::RotatedRect& rect) noexcept;
-inline constexpr rv::RotatedRect<double> converToRotatedRectF(const cv::RotatedRect& rect) noexcept;
+inline rv::RotatedRect<int> converToRotatedRect(const cv::RotatedRect& rect) noexcept;
+inline rv::RotatedRect<double> converToRotatedRectF(const cv::RotatedRect& rect) noexcept;
 
 #include "adapted_cv.inl"

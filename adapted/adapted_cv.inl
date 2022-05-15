@@ -82,7 +82,7 @@ inline constexpr rv::Rectangle<int> converToRect(const cv::Rect_<_Tp>& rect) noe
     //opencv中的rect类型,x和y表示的是左上角的坐标
     rv::Point<int> center(int(rect.x + rect.width / 2), int(rect.y + rect.height / 2));
 
-    return rv::Rectangle<int>(center, converToSize(rect.size));
+    return rv::Rectangle<int>(center, converToSize(rect.size()));
 }
 
 template <typename _Tp>
@@ -91,7 +91,7 @@ inline constexpr rv::Rectangle<double> converToRectF(const cv::Rect_<_Tp>& rect)
     //opencv中的rect类型,x和y表示的是左上角的坐标
     rv::Point<double> center(rect.x + rect.width / 2, rect.y + rect.height / 2);
 
-    return rv::Rectangle<double>(center, converToSizeF(rect.size));
+    return rv::Rectangle<double>(center, converToSizeF(rect.size()));
 }
 
 template <typename _Tp>
@@ -100,24 +100,24 @@ inline constexpr rv::RotatedRect<int> converToRotatedRect(const cv::Rect_<_Tp>& 
     //opencv中的rect类型,x和y表示的是左上角的坐标
     rv::Point<int> center(rect.x + rect.width / 2, rect.y + rect.height / 2);
 
-    return rv::RotatedRect<int>(center, converToSize(rect.size), 0);
+    return rv::RotatedRect<int>(center, converToSize(rect.size()), 0);
 }
 
 template <typename _Tp>
-inline constexpr rv::RotatedRect<double> converToRotatedRect(const cv::Rect_<_Tp>& rect) noexcept
+inline constexpr rv::RotatedRect<double> converToRotatedRectF(const cv::Rect_<_Tp>& rect) noexcept
 {
     //opencv中的rect类型,x和y表示的是左上角的坐标
     rv::Point<double> center(rect.x + rect.width / 2, rect.y + rect.height / 2);
 
-    return rv::RotatedRect<double>(center, converToSizeF(rect.size), 0);
+    return rv::RotatedRect<double>(center, converToSizeF(rect.size()), 0);
 }
 
-inline constexpr rv::RotatedRect<int> converToRotatedRect(const cv::RotatedRect& rect) noexcept
+inline rv::RotatedRect<int> converToRotatedRect(const cv::RotatedRect& rect) noexcept
 {
     return rv::RotatedRect<int>(converToPoint(rect.center), converToSize(rect.size), rv::deg2rad(rect.angle));
 }
 
-inline constexpr rv::RotatedRect<double> converToRotatedRectF(const cv::RotatedRect& rect) noexcept
+inline rv::RotatedRect<double> converToRotatedRectF(const cv::RotatedRect& rect) noexcept
 {
     return rv::RotatedRect<int>(converToPointF(rect.center), converToSizeF(rect.size), rv::deg2rad(rect.angle));
 }

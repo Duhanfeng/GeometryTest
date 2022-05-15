@@ -1,9 +1,9 @@
 ﻿#pragma once
 
 #include <vector>
+#include <memory>
 #include <geometry/geometry.hpp>
 #include <opencv2/opencv.hpp>
-
 namespace rv
 {
     enum class RegionType
@@ -55,6 +55,7 @@ namespace rv
         cv::Mat getRegionMask(int rows, int cols) const;        //以opencv的mask方式输出
 
         static std::shared_ptr<Runs<short>> convertToRuns(cv::InputArray mask);
+        static cv::Mat drawRuns(std::shared_ptr<Runs<short>> runs, int rows, int cols);
         static rv::Region mask2Region(cv::InputArray mask);
 
     public:
